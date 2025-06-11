@@ -1,5 +1,7 @@
 import os
 from flask import Flask, request
+import logging
+
 app = Flask(__name__)
 
 @app.route('/webhook', methods=['GET', 'POST'])
@@ -18,7 +20,8 @@ def webhook():
 
     if request.method == 'POST':
         data = request.get_json()
-        print("Received message:", data)
+        logging.basicConfig(level=logging.INFO)
+        logging.info("Received: %s", data)
         return "OK", 200
 
 if __name__ == '__main__':
