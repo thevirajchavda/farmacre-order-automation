@@ -1,6 +1,5 @@
 import os
 from flask import Flask, request
-
 app = Flask(__name__)
 
 @app.route('/webhook', methods=['GET', 'POST'])
@@ -13,8 +12,6 @@ def webhook():
         challenge = request.args.get("hub.challenge")
 
         if mode == "subscribe" and token == verify_token:
-            response = make_response(challenge, 200)
-            response.headers["ngrok-skip-browser-warning"] = "true"
             return challenge, 200
         else:
             return "Verification failed", 403
