@@ -64,7 +64,7 @@ def webhook():
             "messaging_product": "whatsapp",
             "to": data["entry"][0]["changes"][0]["value"]["messages"][0]["from"],  # Receiver
             "type": "text",
-            "text": {"body": answerFromAi}
+            "text": {"body": answerFromAi.json()["candidates"][0]["content"]["parts"][0]["text"]}
         }
         r = requests.post(url, headers=headers, json=dataHaveToSend)
         logging.info("Received2: %s", str(r.status_code)+str( r.text))
