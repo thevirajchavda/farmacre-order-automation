@@ -5,7 +5,7 @@ import json
 import requests
 
 app = Flask(__name__)
-conversationHistory = ""
+global conversationHistory
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     if request.method == 'GET':
