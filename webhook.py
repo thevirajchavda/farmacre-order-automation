@@ -35,7 +35,9 @@ def webhook():
         headers = {
             'Content-Type': 'application/json'
         }
-        conversationHistory += "user: "+data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"]
+        if "messages" in data["entry"][0]["changes"][0]["value"]:
+            message_body = data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"]
+            conversationHistory += "user: " + message_body
         dataHaveToSend = {
             "contents": [
                 {
