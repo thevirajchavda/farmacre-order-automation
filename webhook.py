@@ -4,6 +4,8 @@ import logging
 import json
 import requests
 
+conversationHistory = ""
+
 app = Flask(__name__)
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
