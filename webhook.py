@@ -5,7 +5,6 @@ import json
 import requests
 
 app = Flask(__name__)
-global conversationHistory
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
     if request.method == 'GET':
@@ -21,6 +20,7 @@ def webhook():
             return "Verification failed", 403
 
     if request.method == 'POST':
+        global conversationHistory
         data = request.get_json()
         logging.basicConfig(level=logging.INFO)
         logging.info("Received: %s", data)
