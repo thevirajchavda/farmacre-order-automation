@@ -33,7 +33,7 @@ def webhook():
         headers = {
             'Content-Type': 'application/json'
         }
-        conversationHistory += f"user: {data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"]}"
+        conversationHistory += "user: "+data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"]
         dataHaveToSend = {
             "contents": [
                 {
@@ -51,7 +51,7 @@ def webhook():
             answerFromAi.raise_for_status()  # Raise an exception for HTTP errors (4xx or 5xx)
             # Print the response
             logging.info("ai answer :%s",answerFromAi.json()["candidates"][0]["content"]["parts"][0]["text"])
-            conversationHistory += f"\nmodel: {answerFromAi.json()["candidates"][0]["content"]["parts"][0]["text"]}\n"
+            conversationHistory += "\nmodel: "+answerFromAi.json()["candidates"][0]["content"]["parts"][0]["text"]+"\n"
 
         except requests.exceptions.RequestException as e:
             logging.info("An error occurred: %s",str(e))
